@@ -18,6 +18,7 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.practice.springbootpractice.exitcode.CheckExitCodeGeneratorException;
+import com.practice.springbootpractice.externalConfig.ReadExtConfig_Properties;
 
 @SpringBootApplication
 public class SpringbootpracticeApplication implements CommandLineRunner, ApplicationRunner {
@@ -25,12 +26,17 @@ public class SpringbootpracticeApplication implements CommandLineRunner, Applica
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(SpringbootpracticeApplication.class);
 		app.setBannerMode(Banner.Mode.OFF);
-		ConfigurableApplicationContext run = app.run(args);
+		
 		// Commented the following as it prints all bean names
 		//Stream.of(run.getBeanDefinitionNames()).filter(s -> !s.contains("spring")).forEach(System.out::println);
+		ConfigurableApplicationContext run = app.run(args);
+//		ReadExtConfig_Properties bean = run.getBean("readextconfig",ReadExtConfig_Properties.class);
+//		bean.getServerPort();
 		
-		SomeBean bean = run.getBean("somebean", SomeBean.class);
-		bean.doSomeThing();
+		// Can extract the beans as follows
+		//SomeBean bean = run.getBean("somebean", SomeBean.class);
+		//bean.doSomeThing();
+		
 		//		SpringApplication.run(SpringbootpracticeApplication.class, args);
 		//Commented the following as it exits the application
 		//SpringApplication.exit(run, new MyExitCodeGenerator());
